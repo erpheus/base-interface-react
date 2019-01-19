@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  ui:
+    build: ui
+    volumes:
+      - './ui:/app'
+    environment:
+      - 'NODE_ENV=dev'
+    command: /bin/bash 
+    ports:
+      - '${UI_PORT}:80'
