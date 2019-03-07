@@ -11,6 +11,7 @@
     "build": "webpack"
   },
   "dependencies": {
+    "@hot-loader/react-dom": "16.7.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1"
@@ -23,6 +24,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "react-hot-loader": "^4.6.3",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",

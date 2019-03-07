@@ -1,10 +1,16 @@
 import React from 'react'
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { hot } from 'react-hot-loader/root'
 
-export default function Wrappers({ children }) {
+import Base from './sections/Base'
+
+
+const Wrappers = ({ children }) => {
   return (
     <BrowserRouter>
-      {children}
+        <Base />
     </BrowserRouter>
   )
 }
+
+export default hot(Wrappers)

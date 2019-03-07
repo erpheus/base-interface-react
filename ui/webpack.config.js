@@ -6,7 +6,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: [
-    './src/index.jsx',
+    'react-hot-loader/patch',
+    'webpack/hot/only-dev-server',
+    './src/index.jsx'
   ],
   output: {
     filename: 'main.js',
@@ -15,13 +17,12 @@ module.exports = {
   },
   devServer: {
     host: '0.0.0.0',
-    port: 80,
+    port: process.env.EXTERNAL_PORT,
     hot: true,
     publicPath: '/',
     historyApiFallback: true,
     disableHostCheck: true,
-    inline: true,
-    public: 'http://localhost:3232'
+    inline: true
   },
   module: {
     rules: [
@@ -30,7 +31,8 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react']
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: ['react-hot-loader/babel']
           }
         },
         exclude: /node_modules/,
@@ -51,14 +53,17 @@ module.exports = {
       }
     ]),
     new HtmlWebpackPlugin({
-      title: 'base-interface',
       template: './src/index.html'
     })
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      '~': path.resolve('./src')
+      '~': path.resolve('./src'),
+      'react-dom': '@hot-loader/react-dom'
     }
+  },
+  node: {
+    fs: 'empty'
   }
 };
